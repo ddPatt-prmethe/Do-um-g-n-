@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doğum Günün Kutlu Olsun Beyza Eke!</title>
+  <meta name="description" content="Özel doğum günü tebrik sayfası">
+  <style>
+    :root {
+      --bg1: #ff9a9e;
+      --bg2: #fad0c4;
+      --text: #1f2937;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin: 0 0 0.5rem;
+      color: #fff;
+      text-shadow: 0 6px 16px rgba(0,0,0,0.35);
+      animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+    .subtitle {
+      color: #fff;
+      opacity: 0.95;
+      font-size: 1.05rem;
+    }
+    .wrap {
+      width: min(1100px, 92vw);
+      margin: 1.5rem auto 3rem;
+      background: rgba(255,255,255,0.85);
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      padding: clamp(14px, 3vw, 28px);
+      backdrop-filter: blur(4px);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 18px;
+    }
+    figure {
+      margin: 0;
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    figure:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+    }
+    img, video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    figcaption {
+      padding: 10px 12px 14px;
+      font-size: .95rem;
+      color: #4b5563;
+    }
+    footer {
+      text-align: center;
+      color: #fff;
+      padding: 2rem 1rem 3rem;
+      opacity: .95;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 10px 0 20px;
+      flex-wrap: wrap;
+    }
+    button {
+      cursor: pointer;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      background: #111827;
+      color: #fff;
+      font-weight: 600;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    button:hover { transform: translateY(-2px); }
+    .hint {
+      font-size: .9rem;
+      color: #374151;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎂 Doğum Günün Kutlu Olsun Beyza Eke! 🎉</h1>
+    <p class="subtitle">Senin için küçük bir sürpriz hazırladım. ❤️</p>
+  </header>
+
+  <main class="wrap">
+    <p class="hint">İpucu: Sayfaya tıkladığında konfeti patlar ✨</p>
+    <div class="controls">
+      <button id="btnConfetti">Konfeti Patlat</button>
+    </div>
+
+    <section class="grid" aria-label="Fotoğraf ve Video Galerisi">
+      <figure>
+        <img loading="lazy" src="assets/images/foto1.png" alt="Birlikte çekilmiş bir fotoğraf (örnek)">
+        <figcaption>Birlikte en sevdiğimiz anlardan biri</figcaption>
+      </figure>
+
+      <figure>
+        <img loading="lazy" src="assets/images/foto2.png" alt="Bir başka anı fotoğrafı (örnek)">
+        <figcaption>Nice güzel anılara 🍰</figcaption>
+      </figure>
+
+      <figure>
+        <video controls preload="metadata" poster="assets/images/foto1.png">
+          <source src="assets/videos/video1.mp4" type="video/mp4">
+          Tarayıcınız video etiketini desteklemiyor.
+        </video>
+        <figcaption>Kısa bir video mesajı</figcaption>
+      </figure>
+
+      <figure>
+        <video controls preload="metadata" poster="assets/images/foto2.png">
+          <source src="assets/videos/video2.mp4" type="video/mp4">
+          Tarayıcınız video etiketini desteklemiyor.
+        </video>
+        <figcaption>Bir başka tatlı an</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer>
+    Hazırlayan: En iyi arkadaşın 💕 • <span id="year"></span>
+  </footer>
+
+  <!-- Konfeti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    // Yıl
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Konfeti
+    function fireConfetti() {
+      confetti({ particleCount: 180, spread: 80, origin: { y: 0.6 } });
+    }
+    document.getElementById("btnConfetti").addEventListener("click", fireConfetti);
+    window.addEventListener("load", fireConfetti);
+    document.addEventListener("click", (e) => {
+      if (e.target.id !== "btnConfetti") confetti({ particleCount: 70, spread: 70 });
+    });
+  </script>
+</body>
+</html>
